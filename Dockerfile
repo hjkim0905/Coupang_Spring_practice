@@ -6,3 +6,6 @@ COPY target/CoupangSpring.war /usr/local/tomcat/webapps/
 
 # Expose the default Tomcat port
 EXPOSE 8080
+
+# Set the context path
+ENV CATALINA_OPTS="-Dserver.servlet.context-path=/CoupangSpring"
