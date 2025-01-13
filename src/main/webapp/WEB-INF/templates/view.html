@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keys</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">Coupang</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+<div class="container mt-5">
+    <h2 class="text-center">상품 상세 정보</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img th:src="@{'/image/' + ${product.image}}" class="img-fluid" style="max-width: 100%; height: auto;">
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="card-title">상품명: <span th:text="${product.name}">상품 이름</span></h3>
+                            <p class="card-text">가격: <span th:text="${product.price}">₩ 가격</span></p>
+                            <p class="card-text">재고 수량: <span th:text="${product.stock}">재고 수량</span></p>
+                            <p class="card-text">설명: <span th:text="${product.description}">상품 설명</span></p>
+                            <button class="btn btn-warning" th:onclick="location.href='./edit/' + [[${product.id}]]">수정하기</button>
+                            <button class="btn btn-danger" th:onclick="confirmDelete([[${product.id}]])">삭제하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(id) {
+        if (confirm('정말 삭제하시겠습니까?')) {
+            location.href = './delete/' + id;
+        }
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
